@@ -17,6 +17,7 @@ public class GeoDataValidator
         this.maxLongitude = maxLongitude;
     }
 
+
     // Метод для перевірки валідності координат
     public bool ValidateCoordinates(double latitude, double longitude)
     {
@@ -32,6 +33,33 @@ public class GeoDataValidator
         }
     }
 }
+
+public class SensorSignalChecker
+{
+    // Список доступних датчиків із їхніми типами
+    private List<string> availableSensors = new List<string> { "moisture", "temperature", "light" };
+
+    // Метод, який перевіряє наявність сигналу з усіх датчиків
+    public bool CheckAllSensorSignals()
+    {
+        foreach (var sensorType in availableSensors)
+        {
+            if (!CheckSensorSignal(sensorType))
+                return false; // Якщо сигнал хоча б з одного датчика відсутній, повертаємо false
+        }
+        return true; // Якщо сигнал з усіх датчиків наявний, повертаємо true
+    }
+
+    // Метод, який перевіряє наявність сигналу з конкретного датчика
+    private bool CheckSensorSignal(string sensorType)
+    {
+        // Симулюємо перевірку наявності сигналу з датчика
+        // Тут можна реалізувати реальну логіку перевірки, наприклад, звернення до бази даних або інші засоби
+        // В даному випадку, для прикладу, просто завжди повертаємо true, що вказує на наявність сигналу
+        return true;
+    }
+}
+
 
 // Клас для перевірки валідності даних від датчиків
 public class SensorDataValidator
@@ -100,6 +128,14 @@ class Program
         else
         {
             Console.WriteLine("Координати недiйснi");
+        }
+
+        // Перевірка наявності сигналу з усіх датчиків
+        SensorSignalChecker signalChecker = new SensorSignalChecker();
+        if (!signalChecker.CheckAllSensorSignals())
+        {
+            Console.WriteLine("Сигнал з одного або кількох датчиків відсутній");
+            return; // Вихід з програми, оскільки немає сенсу продовжувати без сигналу з усіх датчиків
         }
 
         // Приклад використання SensorDataValidator
