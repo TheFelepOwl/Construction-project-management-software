@@ -64,14 +64,12 @@ public class SensorSignalChecker
 // Клас для перевірки валідності даних від датчиків
 public class SensorDataValidator
 {
-    private readonly double minValue;
-    private readonly double maxValue;
+    
 
     // Конструктор, який ініціалізує мінімальне та максимальне значення датчика
-    public SensorDataValidator(double minValue, double maxValue)
+    public SensorDataValidator()
     {
-        this.minValue = minValue;
-        this.maxValue = maxValue;
+        
     }
 
     // Метод для перевірки валідності даних від датчика
@@ -139,7 +137,7 @@ class Program
         }
 
         // Приклад використання SensorDataValidator
-        SensorDataValidator sensorValidator = new SensorDataValidator(0, 100);
+        SensorDataValidator sensorValidator = new SensorDataValidator();
         string sensorType = "moisture";
         double dataValue = 75;
         if (sensorValidator.ValidateData(sensorType, dataValue))
